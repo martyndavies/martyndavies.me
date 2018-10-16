@@ -1,5 +1,35 @@
 [
   {
+    "title": "Build a Facebook Bot with KoaJS, Nexmo Messages API & Dialogflow",
+    "url": "https://www.nexmo.com/blog/2018/10/16/build-a-facebook-messenger-bot-with-messages-api-and-dialogflow-dr/",
+    "site": "nexmo"
+  },
+  {
+    "title": "First Look at the Nexmo Messages & Dispatch APIs",
+    "url": "https://www.nexmo.com/blog/2018/10/10/nexmo-messages-dispatch-apis-dr/",
+    "site": "nexmo"
+  },
+  {
+    "title": "Add 2FA to Nuxt Applications using Nexmo Verify",
+    "url": "https://www.nexmo.com/blog/2018/09/11/add-2fa-to-nuxt-with-nexmo-verify-dr/",
+    "site": "nexmo"
+  },
+  {
+    "title": "Record a Phone Message with Nexmo in PHP",
+    "url": "https://www.nexmo.com/blog/2018/08/14/record-a-phone-message-with-php-dr/",
+    "site": "nexmo"
+  },
+  {
+    "title": "Handle Keypad Input (DTMF) with Nexmo in PHP",
+    "url": "https://www.nexmo.com/blog/2018/08/10/handle-user-input-with-php-dr/",
+    "site": "nexmo"
+  },
+  {
+    "title": "Building an image search with Algolia & Google's Vision API",
+    "url": "https://dev.to/martyndavies/building-an-image-search-with-algolia--googles-vision-api-37gm",
+    "site": "dev.to"
+  },
+  {
     "title": "Building an image search with Algolia & Google's Vision API",
     "url": "https://dev.to/martyndavies/building-an-image-search-with-algolia--googles-vision-api-37gm",
     "site": "dev.to"
