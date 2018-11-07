@@ -1,8 +1,8 @@
 {
   "name": "martyndavies.me",
-  "description": "A Vue.js project",
+  "description": "Mon personal website",
   "version": "1.0.0",
-  "author": "Martyn Davies <martynrdavies@gmail.com>",
+  "author": "Martyn Davies",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.5.11",
+    "vue": "^2.5.17",
     "vue-resource": "^1.3.6",
     "vue-router": "^3.0.1"
   },
@@ -24,13 +24,14 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
+    "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "node-sass": "^4.9.4",
     "sass-loader": "^6.0.6",
     "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.4.4",
+    "vue-template-compiler": "^2.5.17",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   }
