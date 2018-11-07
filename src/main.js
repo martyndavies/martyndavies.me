@@ -11,10 +11,12 @@ Vue.use(VueResource);
 const routes = [
   {
     path: '/',
+    name: 'Home',
     component: Home
   },
   {
     path: '/bonus/devrelcon2018',
+    name: 'DevRelCon',
     component: DevRelCon
   }
 ];
