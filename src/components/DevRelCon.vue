@@ -11,7 +11,7 @@
       <p class="attribution">Download file by ✦ Shmidt Sergey ✦ from the Noun Project</p>
     </div>
     <div id="download-image" class="col s6">
-      <a href="https://www.dropbox.com/s/4dne4edwmd449pp/Design%20Your%20Content%20Strategy%20with%20Data%20-%20Bonus%20Content.pdf?dl=0"><img :src="downloadImage" width="200"/></a>
+      <a href="https://www.dropbox.com/s/5m4xkgu3xp9uhbz/Design%20Your%20Content%20Strategy%20with%20Data%20-%20Bonus%20Content.pdf?dl=0"><img :src="downloadImage" width="200"/></a>
     </div>
   </div>
 </div>
