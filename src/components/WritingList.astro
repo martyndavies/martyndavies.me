@@ -1,0 +1,74 @@
+---
+import { articles } from '../data/writing';
+---
+
+<section>
+  <h2>Writing <span class="badge">{articles.length}</span></h2>
+  <ul>
+    {
+      articles.map((article) => (
+        <li>
+          <a href={article.url} target="_blank" rel="noopener noreferrer">
+            {article.title}
+          </a>
+          <span class="tag">{article.site}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  section {
+    min-width: 0;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    background: var(--color-badge-bg);
+    color: var(--color-badge-text);
+    font-size: 0.7rem;
+    padding: 0.1em 0.5em;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  li a {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>

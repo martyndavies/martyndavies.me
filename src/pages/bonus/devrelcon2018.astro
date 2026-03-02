@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Dev Rel Con 2018 — Martyn Davies">
+  <main>
+    <h1>Dev Rel Con 2018</h1>
+    <hr />
+    <h2><em>Design Your Content Strategy With Data</em></h2>
+    <div class="content">
+      <div class="text">
+        <p>
+          Thanks for checking out the talk! I hope you found it useful and that
+          there were some takeaways you can immediately put into place as part of
+          your own strategy.
+        </p>
+        <p>
+          The talk was initially longer than the 20 minutes I had on stage so I
+          thought I would take a section and offer it up as bonus content if
+          people wanted to read it.
+        </p>
+        <p>
+          If one of those people is you then you can download it by clicking on
+          the image on the right!
+        </p>
+        <p class="attribution">
+          Download file by ✦ Shmidt Sergey ✦ from the Noun Project
+        </p>
+      </div>
+      <div class="download">
+        <a
+          href="https://www.dropbox.com/s/5m4xkgu3xp9uhbz/Design%20Your%20Content%20Strategy%20with%20Data%20-%20Bonus%20Content.pdf?dl=0"
+        >
+          <img src="/download.png" width="200" alt="Download bonus content PDF" />
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 0 0 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin: 0 0 2rem;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  p {
+    font-size: 1.0625rem;
+    margin: 0 0 1rem;
+  }
+
+  .attribution {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  .download {
+    text-align: center;
+    padding-top: 1rem;
+  }
+
+  .download img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    .content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
