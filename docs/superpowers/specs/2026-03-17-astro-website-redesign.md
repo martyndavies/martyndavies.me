@@ -1,6 +1,6 @@
 ---
 title: Astro 8-Bit Personal Website Redesign
-status: pending-review
+status: in-review
 author: Martyn Davies
 date: 2026-03-17
 ---
@@ -280,21 +280,178 @@ interface Company {
   "astro": "^5.0.0",
   "@astrojs/react": "^4.0.0",
   "@astrojs/tailwind": "^5.0.0",
-  "react": "^19.0.0",
-  "react-dom": "^19.0.0",
+  "@astrojs/vercel": "^10.0.0",
+  "@astrojs/sitemap": "^3.2.0",
+  "@astrojs/rss": "^4.0.0",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
   "tailwindcss": "^3.4.0",
   "typescript": "^5.0.0",
   "lucide-react": "^0.500.0"
 }
 ```
 
-## Future Considerations
+## Data Migration
 
-- Add View Transitions for smooth navigation
-- Add blog with MDX content collection
-- Add RSS feed generation
-- Add sitemap.xml
-- Add SEO metadata
+### Source Files
+- Current data located at: `~/development/martyndavies.me/data/`
+- Files to migrate:
+  - `data/speaking.json` - Conference talks and presentations
+  - `data/writing.json` - Blog posts and articles
+  - `data/videos.json` - YouTube videos with metadata
+  - `data/opensource.json` - Open source projects with stats
+
+### Migration Checklist
+- [ ] Copy all 4 JSON files to `src/data/`
+- [ ] Create TypeScript interfaces in `src/types/index.ts`
+- [ ] Validate JSON against interfaces
+- [ ] Type each JSON import
+- [ ] Verify data integrity (no missing fields)
+
+## Theme System
+
+### Dark/Light Mode Implementation
+- Use Tailwind's `darkMode: 'class'` strategy
+- CSS custom properties mapped to Tailwind:
+```css
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #000000;
+  --accent-primary: #39ff14;
+  --border-color: #000000;
+}
+
+.dark {
+  --bg-primary: #0a0a0a;
+  --text-primary: #ffffff;
+  --accent-primary: #39ff14;
+  --border-color: #39ff14;
+}
+```
+- Tailwind config maps CSS vars to theme colors
+- ThemeToggle uses `document.documentElement.classList.toggle('dark')`
+- Persist to localStorage with `window.matchMedia('(prefers-color-scheme: dark')` as default
+
+## Image Strategy
+
+### Assets Structure
+```
+src/
+└── assets/
+    ├── images/
+    │   ├── thumbnails/
+    │   └── avatars/
+    └── fonts/
+```
+
+### Image Components
+- Use `astro:assets` for local images (optimized WebP)
+- Remote images (YouTube thumbnails): Use native `<img>` with explicit width/height
+- All images: `image-rendering: pixelated` for pixel art style
+- Lazy loading for below-fold content
+- Eager load Hero image (LCP optimization)
+
+## SEO & Metadata
+
+### PixelLayout.astro Head
+```astro
+<head>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+```
+
+### Sitemap & RSS
+- Add `@astrojs/sitemap` for sitemap.xml
+- Add RSS feed at `/rss.xml` via `@astrojs/rss`
+
+## Accessibility
+
+### Requirements
+- Focus-visible styles on all interactive elements (pixel outline)
+- Keyboard navigation with visible focus states
+- ARIA labels on icon-only buttons
+- Skip to main content link
+- Color contrast ratio 4.5:1 minimum
+- Reduced motion preference respected (disable CRT effects)
+- Screen reader announcements for modal open/close
+
+### Pixel Focus Styles
+```css
+.pixel-focus:focus-visible {
+  outline: 4px solid var(--accent-primary);
+  outline-offset: 4px;
+}
+```
+
+## Error Handling
+
+### Data Loading Errors
+- Graceful fallback: Show "Content unavailable" message
+- Log error to console for debugging
+- Don't crash page on missing data
+
+### Video Modal Errors
+- YouTube embed: Show error state if video unavailable
+- Fallback: Link to YouTube directly
+- Error boundary: React ErrorBoundary component
+
+### Missing Images
+- Use placeholder pixel image
+- Log missing asset to console
+
+## Content Collections
+
+### src/content/config.ts
+```typescript
+import { defineCollection, z } from 'astro:content';
+
+const aboutCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    updated: z.date().optional(),
+  }),
+});
+
+export const collections = {
+  'about': aboutCollection,
+};
+```
+
+## Deployment
+
+### Target
+- **Vercel** - Native Astro support, zero config
+- Adapter: `@astrojs/vercel/static` or `@astrojs/vercel/serverless`
+
+### Build Configuration
+```typescript
+// astro.config.mjs
+export default defineConfig({
+  output: 'static',
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
+  image: {
+    service: { entrypoint: 'astro/assets/services/sharp' },
+  },
+});
+```
+
+### Deploy Steps
+1. Push to GitHub repository
+2. Connect repo to Vercel
+3. Auto-detect Astro framework
+4. Deploy on push to main
 
 ## Success Criteria
 
