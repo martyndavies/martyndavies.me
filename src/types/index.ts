@@ -38,3 +38,9 @@ export interface Company {
   role: string;
   period: string;
 }
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
