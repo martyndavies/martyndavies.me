@@ -1,0 +1,36 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'outline';
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  variant = 'primary',
+  class: className = '',
+  ariaLabel
+} = Astro.props;
+
+const baseClasses = 'pixel-button inline-flex items-center justify-center gap-2 pixel-focus';
+
+const variantClasses = {
+  primary: 'bg-pixel-green text-black',
+  secondary: 'bg-pixel-magenta text-white',
+  outline: 'bg-transparent border-black dark:border-white text-black dark:text-white',
+};
+
+const Component = href ? 'a' : 'button';
+---
+
+<Component
+  href={href}
+  type={!href ? type : undefined}
+  class:list={[baseClasses, variantClasses[variant], className]}
+  aria-label={ariaLabel}
+>
+  <slot />
+</Component>

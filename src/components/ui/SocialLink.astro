@@ -1,0 +1,31 @@
+---
+import { Github, Linkedin, Twitter } from 'lucide-react';
+
+interface Props {
+  href: string;
+  icon: 'github' | 'linkedin' | 'twitter' | 'devto';
+  label: string;
+}
+
+const { href, icon, label } = Astro.props;
+
+const icons = {
+  github: Github,
+  linkedin: Linkedin,
+  twitter: Twitter,
+  devto: Github,
+};
+
+const Icon = icons[icon];
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+  class="pixel-button variant-outline"
+>
+  <Icon class="w-5 h-5" />
+  <slot />
+</a>

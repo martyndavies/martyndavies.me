@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+  color?: string;
+}
+
+const { class: className = '', color = 'currentColor' } = Astro.props;
+---
+
+<div class:list={['pixel-border', className]} style={`--border-color: ${color}`}>
+  <slot />
+</div>
