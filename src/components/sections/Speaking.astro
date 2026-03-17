@@ -1,0 +1,30 @@
+---
+import PixelCard from '../pixel/PixelCard.astro';
+import { ExternalLink } from 'lucide-react';
+import speakingData from '../../data/speaking';
+
+const displayedSpeaking = speakingData.slice(0, 6);
+---
+
+<section class="mb-16 px-4">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-4xl font-pixel-header mb-8">Speaking</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {displayedSpeaking.map((talk, index) => (
+        <PixelCard key={index}>
+          <div class="p-4">
+            <a 
+              href={talk.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:underline"
+            >
+              <span class="font-medium">{talk.title}</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </PixelCard>
+      ))}
+    </div>
+  </div>
+</section>

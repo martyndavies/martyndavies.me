@@ -1,0 +1,34 @@
+---
+import PixelCard from '../pixel/PixelCard.astro';
+import PixelButton from '../pixel/PixelButton.astro';
+import { ExternalLink } from 'lucide-react';
+import writingData from '../../data/writing';
+
+const displayedWriting = writingData.slice(0, 6);
+---
+
+<section class="mb-16 px-4">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-4xl font-pixel-header mb-8">Writing</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {displayedWriting.map((article, index) => (
+        <PixelCard key={index}>
+          <div class="p-4">
+            <a 
+              href={article.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:underline"
+            >
+              <span class="font-medium">{article.title}</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            {article.site && (
+              <span class="text-sm text-gray-500 mt-2 block">{article.site}</span>
+            )}
+          </div>
+        </PixelCard>
+      ))}
+    </div>
+  </div>
+</section>

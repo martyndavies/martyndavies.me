@@ -1,0 +1,61 @@
+---
+import PixelCard from '../pixel/PixelCard.astro';
+import PixelButton from '../pixel/PixelButton.astro';
+import type { Company } from '../../types/index';
+
+const companies: Company[] = [
+  {
+    name: 'Zuplo',
+    url: 'https://zuplo.com',
+    icon: 'zuplo',
+    role: 'Developer Relations',
+    period: '2024-Present',
+  },
+  {
+    name: 'Superface',
+    url: 'https://superface.ai',
+    icon: 'superface',
+    role: 'Developer Relations',
+    period: '2023-2024',
+  },
+  {
+    name: 'Orbit',
+    url: 'https://orbit.love',
+    icon: 'orbit',
+    role: 'Head of Developer Relations',
+    period: '2021-2023',
+  },
+];
+
+const bio = `I'm a Developer Relations professional with extensive experience in technical writing, 
+community building, and conference speaking. I focus on bridging the gap between 
+developers and technology companies, creating content and experiences that help 
+developers succeed.`;
+---
+
+<section class="mb-16 px-4">
+  <div class="container mx-auto max-w-6xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <PixelCard class="md:col-span-2">
+        <div class="p-6">
+          <h2 class="text-3xl font-pixel-header mb-4">About</h2>
+          <p class="text-lg leading-relaxed mb-6">{bio}</p>
+        </div>
+      </PixelCard>
+
+      <PixelCard>
+        <div class="p-6">
+          <h2 class="text-3xl font-pixel-header mb-4">Brief History</h2>
+          <div class="space-y-3">
+            {companies.map((company) => (
+              <PixelButton href={company.url} variant="outline" class="w-full justify-start">
+                <span class="font-medium">{company.role}</span>
+                <span class="text-sm text-gray-500">{company.name} • {company.period}</span>
+              </PixelButton>
+            ))}
+          </div>
+        </div>
+      </PixelCard>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+import PixelButton from '../pixel/PixelButton.astro';
+import ThemeToggle from '../interactive/ThemeToggle';
+import SocialLink from '../ui/SocialLink.astro';
+---
+
+<header class="relative pt-8 pb-16 px-4">
+  <div class="absolute top-8 right-8 z-10">
+    <ThemeToggle client:load />
+  </div>
+
+  <div class="container mx-auto max-w-6xl">
+    <h1 class="text-5xl md:text-7xl font-pixel-header mb-4 leading-tight">
+      Martyn Davies
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+      Developer Relations, Technical Writing & Speaking
+    </p>
+
+    <div class="flex flex-wrap gap-4">
+      <SocialLink href="https://github.com/martyndavies" icon="github" label="GitHub">
+        GitHub
+      </SocialLink>
+      <SocialLink href="https://linkedin.com/in/martyndavies" icon="linkedin" label="LinkedIn">
+        LinkedIn
+      </SocialLink>
+      <SocialLink href="https://twitter.com/martynd" icon="twitter" label="X (Twitter)">
+        X (Twitter)
+      </SocialLink>
+      <SocialLink href="https://dev.to/martyndavies" icon="devto" label="Dev.to">
+        Dev.to
+      </SocialLink>
+    </div>
+  </div>
+</header>

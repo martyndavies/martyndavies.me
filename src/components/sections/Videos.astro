@@ -1,0 +1,55 @@
+---
+import { useState } from 'react';
+import PixelCard from '../pixel/PixelCard.astro';
+import { Play, Clock } from 'lucide-react';
+import videosData from '../../data/videos';
+import VideoModal from '../interactive/VideoModal';
+import ShowMoreButton from '../interactive/ShowMoreButton';
+
+const displayedVideos = videosData.slice(0, 6);
+---
+
+<section class="mb-16 px-4">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-4xl font-pixel-header mb-8">Videos</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {displayedVideos.map((video, index) => (
+        <div class="video-card">
+          <PixelCard hover={false}>
+            <div class="relative">
+              <img 
+                src={video.thumbnail} 
+                alt={video.title}
+                class="w-full aspect-video object-cover"
+              />
+              <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <div class="bg-pixel-green text-black rounded-full p-3">
+                  <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                <div class="flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {video.duration}
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">{video.title}</h3>
+              <p class="text-sm text-gray-500 line-clamp-2">{video.description}</p>
+            </div>
+          </PixelCard>
+        </div>
+      ))}
+    </div>
+    {videosData.length > 6 && (
+      <ShowMoreButton 
+        client:load
+        total={videosData.length}
+        shown={6}
+        isExpanded={false}
+        onToggle={() => {}}
+      />
+    )}
+  </div>
+</section>

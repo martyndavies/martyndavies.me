@@ -1,0 +1,52 @@
+---
+import PixelCard from '../pixel/PixelCard.astro';
+import { Github, Star, GitFork, AlertCircle } from 'lucide-react';
+import opensourceData from '../../data/opensource';
+
+const displayedOpensource = opensourceData.slice(0, 6);
+---
+
+<section class="mb-16 px-4">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-4xl font-pixel-header mb-8">Open Source</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {displayedOpensource.map((project, index) => (
+        <PixelCard key={index}>
+          <div class="p-4">
+            <a 
+              href={project.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:underline mb-2"
+            >
+              <Github className="w-4 h-4" />
+              <span class="font-medium">{project.name}</span>
+            </a>
+            <p class="text-sm text-gray-500 mb-3 line-clamp-2">{project.description}</p>
+            <div class="flex items-center justify-between text-sm">
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                  <Star className="w-4 h-4" />
+                  <span>{project.stars}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <GitFork className="w-4 h-4" />
+                  <span>{project.forks}</span>
+                </div>
+                {project.issues > 0 && (
+                  <div class="flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    <span>{project.issues}</span>
+                  </div>
+                )}
+              </div>
+              <span class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+                {project.language}
+              </span>
+            </div>
+          </div>
+        </PixelCard>
+      ))}
+    </div>
+  </div>
+</section>

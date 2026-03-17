@@ -1,0 +1,21 @@
+---
+import SocialLink from '../ui/SocialLink.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t-4 border-black dark:border-white py-8 px-4 mt-16">
+  <div class="container mx-auto max-w-6xl">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex gap-4">
+        <SocialLink href="https://github.com/martyndavies" icon="github" label="GitHub" />
+        <SocialLink href="https://linkedin.com/in/martyndavies" icon="linkedin" label="LinkedIn" />
+        <SocialLink href="https://twitter.com/martynd" icon="twitter" label="X (Twitter)" />
+        <SocialLink href="https://dev.to/martyndavies" icon="devto" label="Dev.to" />
+      </div>
+      <p class="text-sm">
+        © {year} Martyn Davies. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
