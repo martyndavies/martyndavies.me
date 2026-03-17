@@ -54,10 +54,14 @@
     box-shadow: 4px 4px 0 0 currentColor;
   }
 
+  .shadow-pixel-hover {
+    box-shadow: 6px 6px 0 0 #39ff14;
+  }
+
   .text-shadow-pixel {
     text-shadow: 2px 2px 0 currentColor;
   }
-}
+ }
 
 .crt-overlay {
   position: fixed;
