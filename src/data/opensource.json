@@ -1,0 +1,68 @@
+[
+  {
+    "name": "legit",
+    "description": "A CLI tool for managing Git repositories with enhanced functionality and better UX",
+    "url": "https://github.com/martyndavies/legit",
+    "language": "Python",
+    "stars": 12,
+    "forks": 3,
+    "issues": 2,
+    "updatedAt": "2024-01-15",
+    "topics": ["cli", "git", "developer-tools", "python"]
+  },
+  {
+    "name": "dev-rel-toolkit",
+    "description": "A collection of tools and templates for developer relations professionals",
+    "url": "https://github.com/martyndavies/dev-rel-toolkit",
+    "language": "JavaScript",
+    "stars": 45,
+    "forks": 8,
+    "issues": 5,
+    "updatedAt": "2023-12-08",
+    "topics": ["developer-relations", "templates", "community", "tools"]
+  },
+  {
+    "name": "conference-speaker-kit",
+    "description": "Resources and templates for conference speakers including slide templates and proposal guides",
+    "url": "https://github.com/martyndavies/conference-speaker-kit",
+    "language": "Markdown",
+    "stars": 28,
+    "forks": 12,
+    "issues": 1,
+    "updatedAt": "2023-10-22",
+    "topics": ["speaking", "conferences", "templates", "presentations"]
+  },
+  {
+    "name": "api-docs-generator",
+    "description": "Automated API documentation generator with support for multiple output formats",
+    "url": "https://github.com/martyndavies/api-docs-generator",
+    "language": "TypeScript",
+    "stars": 67,
+    "forks": 15,
+    "issues": 8,
+    "updatedAt": "2023-11-30",
+    "topics": ["api", "documentation", "generator", "openapi"]
+  },
+  {
+    "name": "community-metrics-dashboard",
+    "description": "Dashboard for tracking developer community engagement and growth metrics",
+    "url": "https://github.com/martyndavies/community-metrics-dashboard",
+    "language": "React",
+    "stars": 34,
+    "forks": 6,
+    "issues": 3,
+    "updatedAt": "2023-09-14",
+    "topics": ["community", "metrics", "dashboard", "analytics"]
+  },
+  {
+    "name": "webhook-tester",
+    "description": "Simple webhook testing and debugging tool for developers",
+    "url": "https://github.com/martyndavies/webhook-tester",
+    "language": "Node.js",
+    "stars": 89,
+    "forks": 21,
+    "issues": 4,
+    "updatedAt": "2024-02-03",
+    "topics": ["webhooks", "testing", "debugging", "api"]
+  }
+]
