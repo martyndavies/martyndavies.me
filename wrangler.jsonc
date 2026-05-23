@@ -13,6 +13,6 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "dist",
-    "serve_directly": false
+    "run_worker_first": true
   }
 }
