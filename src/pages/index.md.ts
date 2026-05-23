@@ -24,7 +24,6 @@ export const GET: APIRoute = async () => {
     '',
     '## Machine-readable pages',
     '',
-    '- https://martyndavies.me/index.md',
     '- https://martyndavies.me/writing.md',
     '- https://martyndavies.me/videos.md',
     '- https://martyndavies.me/blog/index.md',
@@ -40,6 +39,10 @@ export const GET: APIRoute = async () => {
     '',
     ...writing.slice(0, 5).map(item => `- [${item.title}](${item.url}) — ${item.site}`),
     '',
+    '## Videos',
+    '',
+    ...videos.slice(0, 5).map(item => `- [${item.title}](${item.url}) — ${item.channel}`),
+    '',
     '## Social',
     '',
     '- GitHub: https://github.com/martyndavies',
@@ -47,6 +50,8 @@ export const GET: APIRoute = async () => {
   ]
 
   return new Response(lines.join('\n'), {
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    headers: {
+      'Content-Type': 'text/markdown; charset=utf-8',
+    },
   })
 }

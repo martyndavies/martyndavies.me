@@ -1,0 +1,27 @@
+/*
+  Cloudflare Pages custom headers.
+  Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+  Link headers per RFC 8288 for agent discoverability.
+  Alternate markdown versions are advertised for content pages.
+*/
+
+/
+  Link: </llms.txt>; rel="describedby"
+  Link: </sitemap.xml>; rel="sitemap"
+  Link: </index.md>; rel="alternate"; type="text/markdown"
+
+/about
+  Link: </about.md>; rel="alternate"; type="text/markdown"
+
+/contact
+  Link: </contact.md>; rel="alternate"; type="text/markdown"
+
+/writing
+  Link: </writing.md>; rel="alternate"; type="text/markdown"
+
+/videos
+  Link: </videos.md>; rel="alternate"; type="text/markdown"
+
+/blog
+  Link: </blog/index.md>; rel="alternate"; type="text/markdown"
