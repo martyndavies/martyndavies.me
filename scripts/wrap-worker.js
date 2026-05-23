@@ -46,7 +46,8 @@ export default {
         mdPath = url.pathname + '.md'
       }
 
-      const mdRequest = new Request(new URL(mdPath, request.url), request)
+      const mdUrl = new URL(mdPath, request.url)
+      const mdRequest = new Request(mdUrl, { headers: {} })
       const mdResponse = await env.ASSETS.fetch(mdRequest)
       if (mdResponse.status === 200) {
         const body = await mdResponse.text()
