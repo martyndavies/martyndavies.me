@@ -1,6 +1,15 @@
 /**
  * Post-build script that wraps the Astro-generated Cloudflare worker
  * with content-negotiation logic for Accept: text/markdown.
+ *
+ * This provides a custom fallback for Markdown for Agents. For the
+ * native Cloudflare feature, enable "Markdown for Agents" in the
+ * Cloudflare dashboard (AI Crawl Control) or via the API:
+ * PATCH /zones/{zone_id}/settings/content_converter
+ * {"value": "on"}
+ *
+ * When native conversion is enabled, Cloudflare handles this at the
+ * edge before the worker runs, so this wrapper becomes a no-op fallback.
  */
 
 import fs from 'node:fs'
@@ -40,10 +49,14 @@ export default {
       const mdRequest = new Request(new URL(mdPath, request.url), request)
       const mdResponse = await env.ASSETS.fetch(mdRequest)
       if (mdResponse.status === 200) {
+        const body = await mdResponse.text()
+        const tokenCount = Math.round(body.split(/\s+/).filter(Boolean).length * 1.3)
         const headers = new Headers(mdResponse.headers)
         headers.set('Content-Type', 'text/markdown; charset=utf-8')
         headers.set('Vary', 'Accept')
-        return new Response(mdResponse.body, { status: 200, headers })
+        headers.set('Content-Signal', 'ai-train=yes, search=yes, ai-input=yes')
+        headers.set('X-Markdown-Tokens', String(tokenCount))
+        return new Response(body, { status: 200, headers })
       }
     }
     return astroWorker.fetch(request, env, ctx)
