@@ -1,0 +1,66 @@
+import type { APIRoute } from 'astro'
+
+const SITE = import.meta.env.SITE || 'https://martyndavies.me'
+
+export const GET: APIRoute = () => {
+  const lines = [
+    '# robots.txt for martyndavies.me',
+    '# See https://www.rfc-editor.org/rfc/rfc9309',
+    '',
+    '# Allow all standard crawlers',
+    'User-agent: *',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    '# AI crawlers — explicit allow',
+    'User-agent: GPTBot',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: OAI-SearchBot',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: Claude-Web',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: anthropic-ai',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: Google-Extended',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: Googlebot',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: Amazonbot',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: Bytespider',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: CCBot',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    'User-agent: Applebot-Extended',
+    'Allow: /',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    '',
+    '# Sitemap',
+    `Sitemap: ${SITE}/sitemap.xml`,
+    '',
+  ]
+
+  return new Response(lines.join('\n'), {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+    },
+  })
+}

@@ -64,6 +64,6 @@ Developed and led the team that built the BBC Introducing technology platform.
 Source: https://martyndavies.me/about`
 
   return new Response(content, {
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
   })
 }
