@@ -9,16 +9,6 @@
     "/favicon.svg",
     "/og-default.png",
     "/og-default.svg",
-    "/logos/*",
-    "/about.md",
-    "/blog/index.md",
-    "/blog/the-agent-only-free-trial.md",
-    "/contact.md",
-    "/index.md",
-    "/llms.txt",
-    "/robots.txt",
-    "/sitemap.xml",
-    "/videos.md",
-    "/writing.md"
+    "/logos/*"
   ]
 }
