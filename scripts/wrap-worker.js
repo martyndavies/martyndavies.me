@@ -50,7 +50,7 @@ export default {
       const mdResponse = await env.ASSETS.fetch(mdRequest)
       if (mdResponse.status === 200) {
         const body = await mdResponse.text()
-        const tokenCount = Math.round(body.split(/\\s+/).filter(Boolean).length * 1.3)
+        const tokenCount = Math.round(body.split(/\s+/).filter(Boolean).length * 1.3)
         const headers = new Headers(mdResponse.headers)
         headers.set('Content-Type', 'text/markdown; charset=utf-8')
         headers.set('Vary', 'Accept')
