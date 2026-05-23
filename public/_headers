@@ -1,10 +1,8 @@
-/*
-  Cloudflare Pages custom headers.
-  Docs: https://developers.cloudflare.com/pages/configuration/headers/
-
-  Link headers per RFC 8288 for agent discoverability.
-  Alternate markdown versions are advertised for content pages.
-*/
+# Cloudflare Pages custom headers
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Link headers per RFC 8288 for agent discoverability.
+# Alternate markdown versions are advertised for content pages.
 
 /
   Link: </llms.txt>; rel="describedby"
