@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Hero from '@/components/Hero.astro'
+import SectionHeader from '@/components/SectionHeader.astro'
+import ArticleCard from '@/components/ArticleCard.astro'
+import BlogCard from '@/components/BlogCard.astro'
+import { writing } from '@/data/writing'
+import { getCollection } from 'astro:content'
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+
+const recentWriting = writing.slice(0, 3)
+const recentPosts = posts.slice(0, 2)
+---
+
+<BaseLayout title="Martyn Davies">
+  <Hero name="Martyn Davies" />
+
+  {recentPosts.length > 0 && (
+    <section class="mb-14">
+      <SectionHeader title="Latest writing" href="/blog" linkLabel="All posts" />
+      {recentPosts.map((post, i) => (
+        <BlogCard
+          title={post.data.title}
+          date={post.data.date}
+          excerpt={post.data.excerpt}
+          slug={post.id.replace(/\.md$/, '')}
+          featured={i === 0}
+          showExcerpt={i === 0}
+        />
+      ))}
+    </section>
+  )}
+
+  <section class="mb-14">
+    <SectionHeader title="Articles" href="/writing" linkLabel="All articles" secondary={true} />
+    {recentWriting.map(item => (
+      <ArticleCard item={item} compact={true} />
+    ))}
+  </section>
+</BaseLayout>

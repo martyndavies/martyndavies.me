@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@import "@fontsource-variable/geist/index.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Light mode — tinted neutrals (chroma 0.008 toward teal hue 185) */
+  --color-bg:            oklch(0.985 0.006 185);
+  --color-surface:       oklch(0.998 0.004 185);
+  --color-border:        oklch(0.90 0.008 185);
+  --color-text:          oklch(0.18 0.012 215);
+  --color-muted:         oklch(0.50 0.014 210);
+  --color-accent:        oklch(0.55 0.12 185);
+  --color-accent-hover:  oklch(0.48 0.13 185);
+  --color-code-surface:  oklch(0.93 0.010 185);
+
+  /* Dark mode — tinted neutrals (chroma 0.008 toward teal hue 185) */
+  --color-bg-dark:            oklch(0.13 0.010 215);
+  --color-surface-dark:       oklch(0.17 0.010 215);
+  --color-border-dark:        oklch(0.23 0.010 215);
+  --color-text-dark:          oklch(0.94 0.008 195);
+  --color-muted-dark:         oklch(0.62 0.014 210);
+  --color-accent-dark:        oklch(0.75 0.10 185);
+  --color-accent-hover-dark:  oklch(0.82 0.09 185);
+  --color-code-surface-dark:  oklch(0.20 0.012 215);
+}
+
+:root {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+.dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+.dark * {
+  border-color: var(--color-border-dark);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Only animate theme changes on user-initiated toggles, not on initial load */
+.theme-transitioning,
+.theme-transitioning * {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+}

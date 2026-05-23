@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SectionHeader from '@/components/SectionHeader.astro'
+import { GithubLogo, LinkedinLogo, ArrowSquareOut } from '@phosphor-icons/react'
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Martyn Davies via GitHub or LinkedIn."
+>
+  <SectionHeader title="Contact" />
+
+  <p class="text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] leading-relaxed mb-10 max-w-md">
+    The best way to reach me is through LinkedIn. I'm also on GitHub if you want to see what I'm building.
+  </p>
+
+  <div class="space-y-4">
+    <a
+      href="https://github.com/martyndavies"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex items-center gap-4 p-4 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors"
+    >
+      <GithubLogo
+        size={20}
+        weight="fill"
+        className="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors shrink-0"
+      />
+      <div>
+        <p class="text-sm font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)]">GitHub</p>
+        <p class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">github.com/martyndavies</p>
+      </div>
+      <ArrowSquareOut
+        size={14}
+        className="ml-auto text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors"
+      />
+    </a>
+
+    <a
+      href="https://linkedin.com/in/martynrdavies"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex items-center gap-4 p-4 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors"
+    >
+      <LinkedinLogo
+        size={20}
+        weight="fill"
+        className="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors shrink-0"
+      />
+      <div>
+        <p class="text-sm font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)]">LinkedIn</p>
+        <p class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">linkedin.com/in/martynrdavies</p>
+      </div>
+      <ArrowSquareOut
+        size={14}
+        className="ml-auto text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors"
+      />
+    </a>
+  </div>
+</BaseLayout>

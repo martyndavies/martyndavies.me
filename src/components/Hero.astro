@@ -1,0 +1,48 @@
+---
+import { GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
+import { siteLogos } from '@/data/writing'
+
+const zuploLogo = siteLogos['zuplo']
+
+interface Props {
+  name: string
+}
+
+const { name } = Astro.props
+---
+
+<div class="pb-12 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] mb-16">
+  <p class="font-mono text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] uppercase tracking-widest mb-4">
+    Hello, I'm
+  </p>
+  <h1 class="font-mono text-3xl font-bold tracking-tight text-[var(--color-text)] dark:text-[var(--color-text-dark)] mb-5">
+    {name}
+  </h1>
+  <div class="font-mono text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] space-y-1.5">
+    <p><span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] select-none">~</span> <span class="line-through opacity-50">Developer</span> <span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)]">Builder</span> Relations, Education &amp; Experience Leader</p>
+    <p><span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] select-none">~</span> Based in Košice, Slovakia</p>
+    <p><span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] select-none">~</span> Building cool shit at <a href="https://zuplo.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[var(--color-text)] dark:text-[var(--color-text-dark)] hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors underline underline-offset-2"><img src={zuploLogo.src} alt="" aria-hidden="true" width="14" height="14" class="inline-block h-3.5 w-auto" />Zuplo</a></p>
+  </div>
+  <div class="flex items-center gap-5 mt-7">
+    <a
+      href="https://github.com/martyndavies"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub profile"
+      class="flex items-center gap-2 text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors"
+    >
+      <GithubLogo size={18} weight="fill" />
+      <span class="font-mono text-xs">GitHub</span>
+    </a>
+    <a
+      href="https://linkedin.com/in/martynrdavies"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile"
+      class="flex items-center gap-2 text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors"
+    >
+      <LinkedinLogo size={18} weight="fill" />
+      <span class="font-mono text-xs">LinkedIn</span>
+    </a>
+  </div>
+</div>

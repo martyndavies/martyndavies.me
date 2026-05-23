@@ -1,0 +1,97 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SectionHeader from '@/components/SectionHeader.astro'
+import ArticleCard from '@/components/ArticleCard.astro'
+import { writing, siteLogos, type WritingItem } from '@/data/writing'
+
+const COLLAPSE_THRESHOLD = 6
+
+const grouped = writing.reduce<Record<WritingItem['site'], WritingItem[]>>((acc, item) => {
+  if (!acc[item.site]) acc[item.site] = []
+  acc[item.site].push(item)
+  return acc
+}, {} as Record<WritingItem['site'], WritingItem[]>)
+
+const siteOrder: WritingItem['site'][] = ['zuplo', 'nexmo', 'algolia', 'dev.to', 'sendgrid']
+---
+
+<BaseLayout
+  title="Articles"
+  description="Articles and posts written by Martyn Davies across Zuplo, Vonage/Nexmo, Algolia, SendGrid, and dev.to."
+>
+  <SectionHeader title="Articles" />
+
+  {siteOrder.filter(site => grouped[site]?.length).map(site => {
+    const logo = siteLogos[site]
+    const items = grouped[site]
+    const collapsible = items.length > COLLAPSE_THRESHOLD
+    const hiddenCount = items.length - COLLAPSE_THRESHOLD
+
+    return (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-5 pb-4 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            width="24"
+            height="24"
+            class:list={[
+              'h-6 w-auto object-contain',
+              site !== 'zuplo' && site !== 'sendgrid' && 'dark:invert'
+            ]}
+          />
+          <span class="font-mono text-sm font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
+            {logo.label}
+          </span>
+        </div>
+        <div data-article-list={collapsible ? site : undefined}>
+          {items.map((item, i) => (
+            <div
+              data-index={collapsible ? i : undefined}
+              class="grid overflow-hidden"
+              style={collapsible && i >= COLLAPSE_THRESHOLD ? 'grid-template-rows: 0fr; transition: grid-template-rows 200ms ease' : 'grid-template-rows: 1fr; transition: grid-template-rows 200ms ease'}
+            >
+              <div class="overflow-hidden">
+                <ArticleCard item={item} showSite={false} />
+              </div>
+            </div>
+          ))}
+        </div>
+        {collapsible && (
+          <button
+            data-toggle={site}
+            class="mt-3 font-mono text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] hover:text-[var(--color-accent-hover)] dark:hover:text-[var(--color-accent-hover-dark)] transition-colors"
+          >
+            Show {hiddenCount} more →
+          </button>
+        )}
+      </section>
+    )
+  })}
+</BaseLayout>
+
+<script>
+  const THRESHOLD = 6
+
+  document.querySelectorAll<HTMLButtonElement>('[data-toggle]').forEach(btn => {
+    const site = btn.dataset.toggle!
+    const list = document.querySelector(`[data-article-list="${site}"]`)
+    if (!list) return
+
+    const items = list.querySelectorAll<HTMLElement>('[data-index]')
+    const total = items.length
+    let expanded = false
+
+    btn.addEventListener('click', () => {
+      expanded = !expanded
+      items.forEach(el => {
+        if (parseInt(el.dataset.index!, 10) >= THRESHOLD) {
+          el.style.gridTemplateRows = expanded ? '1fr' : '0fr'
+        }
+      })
+      btn.textContent = expanded
+        ? '← Show less'
+        : `Show ${total - THRESHOLD} more →`
+    })
+  })
+</script>

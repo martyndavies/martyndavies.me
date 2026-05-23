@@ -1,0 +1,43 @@
+---
+import { GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
+
+const year = new Date().getFullYear()
+---
+
+<footer class="w-full border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] mt-auto">
+  <div class="max-w-3xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">
+      &copy; {year} Martyn Davies
+    </p>
+
+    <div class="flex items-center gap-5">
+      <a
+        href="https://github.com/martyndavies"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        class="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors"
+      >
+        <GithubLogo size={18} weight="fill" />
+      </a>
+
+      <a
+        href="https://linkedin.com/in/martynrdavies"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors"
+      >
+        <LinkedinLogo size={18} weight="fill" />
+      </a>
+
+      <a
+        href="/llms.txt"
+        class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors"
+        title="LLMs.txt — machine-readable site index"
+      >
+        llms.txt
+      </a>
+    </div>
+  </div>
+</footer>

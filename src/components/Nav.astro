@@ -1,0 +1,118 @@
+---
+import { Sun, Moon, List, X } from '@phosphor-icons/react'
+
+const navLinks = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/writing', label: 'Articles' },
+  { href: '/videos', label: 'Videos' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+]
+
+const pathname = Astro.url.pathname
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg)]/90 dark:bg-[var(--color-bg-dark)]/90 backdrop-blur-sm">
+  <nav class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a
+      href="/"
+      class="font-mono text-sm font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)] hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors"
+    >
+      Martyn Davies
+    </a>
+
+    <div class="flex items-center gap-4">
+      <!-- Desktop links -->
+      <ul class="hidden sm:flex items-center gap-6">
+        {navLinks.map(({ href, label }) => {
+          const isActive = pathname === href || pathname.startsWith(href + '/')
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  'font-mono text-xs uppercase tracking-wider transition-colors',
+                  isActive
+                    ? 'text-[var(--color-accent)] dark:text-[var(--color-accent-dark)]'
+                    : 'text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)]'
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          )
+        })}
+      </ul>
+
+      <!-- Theme toggle -->
+      <button
+        id="theme-toggle"
+        aria-label="Toggle colour scheme"
+        class="p-1.5 rounded-md text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] hover:bg-[var(--color-border)] dark:hover:bg-[var(--color-border-dark)] transition-colors"
+      >
+        <Sun size={18} weight="bold" className="hidden dark:block" />
+        <Moon size={18} weight="fill" className="block dark:hidden" />
+      </button>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-toggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        class="sm:hidden p-1.5 rounded-md text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] hover:bg-[var(--color-border)] dark:hover:bg-[var(--color-border-dark)] transition-colors"
+      >
+        <List id="icon-menu" size={18} weight="bold" />
+        <X id="icon-close" size={18} weight="bold" className="hidden" />
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="sm:hidden hidden border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)]"
+  >
+    <ul class="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-4">
+      {navLinks.map(({ href, label }) => {
+        const isActive = pathname === href || pathname.startsWith(href + '/')
+        return (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'font-mono text-sm uppercase tracking-wider transition-colors block py-1',
+                isActive
+                  ? 'text-[var(--color-accent)] dark:text-[var(--color-accent-dark)]'
+                  : 'text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]'
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const themeBtn = document.getElementById('theme-toggle')
+  themeBtn?.addEventListener('click', () => {
+    document.documentElement.classList.add('theme-transitioning')
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 300)
+  })
+
+  const menuBtn = document.getElementById('mobile-menu-toggle')
+  const mobileMenu = document.getElementById('mobile-menu')
+  const iconMenu = document.getElementById('icon-menu')
+  const iconClose = document.getElementById('icon-close')
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden')
+    menuBtn.setAttribute('aria-expanded', String(!mobileMenu?.classList.contains('hidden')))
+    iconMenu?.classList.toggle('hidden')
+    iconClose?.classList.toggle('hidden')
+  })
+</script>

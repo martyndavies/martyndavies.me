@@ -1,0 +1,73 @@
+---
+import { ArrowRight } from '@phosphor-icons/react'
+
+interface Props {
+  title: string
+  date: string
+  excerpt: string
+  slug: string
+  featured?: boolean
+  showExcerpt?: boolean
+}
+
+const { title, date, excerpt, slug, featured = false, showExcerpt = true } = Astro.props
+
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+})
+---
+
+{featured ? (
+  <a
+    href={`/blog/${slug}`}
+    class="group block py-6 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] hover:bg-[var(--color-border)] dark:hover:bg-[var(--color-border-dark)] -mx-3 px-3 rounded-lg transition-colors"
+  >
+    <div class="flex items-center justify-between mb-4">
+      <span class="font-mono text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] uppercase tracking-widest">
+        Latest post
+      </span>
+      <ArrowRight
+        size={14}
+        className="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors"
+      />
+    </div>
+    <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--color-text)] dark:text-[var(--color-text-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors leading-tight mb-3">
+      {title}
+    </h3>
+    <p class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] mb-4">
+      {formattedDate}
+    </p>
+    {showExcerpt && (
+      <p class="text-base text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] leading-relaxed">
+        {excerpt}
+      </p>
+    )}
+  </a>
+) : (
+  <a
+    href={`/blog/${slug}`}
+    class="group flex items-start justify-between gap-4 py-4 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] last:border-0 hover:bg-[var(--color-surface)] dark:hover:bg-[var(--color-surface-dark)] -mx-3 px-3 rounded-md transition-colors"
+  >
+    <div class="flex-1 min-w-0">
+      <h3 class="text-base font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors leading-snug">
+        {title}
+      </h3>
+      <div class="flex items-center gap-2 mt-1.5">
+        <span class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">
+          {formattedDate}
+        </span>
+      </div>
+      {showExcerpt && (
+        <p class="mt-2 text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] line-clamp-2 leading-relaxed">
+          {excerpt}
+        </p>
+      )}
+    </div>
+    <ArrowRight
+      size={16}
+      className="shrink-0 mt-1 text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors"
+    />
+  </a>
+)}

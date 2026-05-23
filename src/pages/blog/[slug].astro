@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts
+    .filter(p => !p.data.draft)
+    .map(post => ({ params: { slug: post.id.replace(/\.md$/, '') }, props: { post } }))
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+---
+
+<BaseLayout title={post.data.title} description={post.data.excerpt}>
+  <article>
+    <header class="mb-10 pb-8 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+      <a
+        href="/blog"
+        class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors mb-6 block"
+      >
+        ← Blog
+      </a>
+      <h1 class="text-3xl font-semibold tracking-tight text-[var(--color-text)] dark:text-[var(--color-text-dark)] leading-snug mb-3">
+        {post.data.title}
+      </h1>
+      <time datetime={post.data.date} class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">
+        {formattedDate}
+      </time>
+    </header>
+
+    <div class="prose max-w-none
+      prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[var(--color-text)] dark:prose-headings:text-[var(--color-text-dark)]
+      prose-p:text-[var(--color-text)] dark:prose-p:text-[var(--color-text-dark)] prose-p:leading-relaxed
+      prose-a:text-[var(--color-accent)] dark:prose-a:text-[var(--color-accent-dark)] prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-[var(--color-text)] dark:prose-strong:text-[var(--color-text-dark)]
+      prose-code:font-mono prose-code:text-[var(--color-accent)] dark:prose-code:text-[var(--color-accent-dark)] prose-code:bg-[var(--color-code-surface)] dark:prose-code:bg-[var(--color-code-surface-dark)] prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+      prose-hr:border-[var(--color-border)] dark:prose-hr:border-[var(--color-border-dark)]
+      prose-li:text-[var(--color-text)] dark:prose-li:text-[var(--color-text-dark)]
+      prose-blockquote:border-l-[var(--color-accent)] dark:prose-blockquote:border-l-[var(--color-accent-dark)] prose-blockquote:text-[var(--color-muted)] dark:prose-blockquote:text-[var(--color-muted-dark)]
+    ">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

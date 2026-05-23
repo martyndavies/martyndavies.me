@@ -1,0 +1,59 @@
+---
+import { ArrowSquareOut } from '@phosphor-icons/react'
+import type { VideoItem } from '@/data/videos'
+import { getThumbnailUrl } from '@/data/videos'
+
+interface Props {
+  item: VideoItem
+  showChannel?: boolean
+}
+
+const { item, showChannel = true } = Astro.props
+
+const thumbnail = getThumbnailUrl(item.url)
+const formattedDate = item.date
+  ? new Date(item.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })
+  : null
+---
+
+<a
+  href={item.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group flex items-start gap-4 py-4 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] last:border-0 hover:bg-[var(--color-surface)] dark:hover:bg-[var(--color-surface-dark)] -mx-3 px-3 rounded-md transition-colors"
+>
+  {thumbnail && (
+    <div aria-hidden="true" class="shrink-0 w-24 h-[54px] rounded overflow-hidden bg-[var(--color-border)] dark:bg-[var(--color-border-dark)]">
+      <img
+        src={thumbnail}
+        alt=""
+        width="120"
+        height="68"
+        loading="lazy"
+        class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+      />
+    </div>
+  )}
+
+  <div class="flex-1 min-w-0">
+    <h3 class="text-base font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors leading-snug">
+      {item.title}
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5">
+      {showChannel && (
+        <span class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">{item.channel}</span>
+      )}
+      {showChannel && formattedDate && (
+        <span class="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">·</span>
+      )}
+      {formattedDate && (
+        <span class="font-mono text-xs text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">{formattedDate}</span>
+      )}
+    </div>
+  </div>
+
+  <ArrowSquareOut
+    size={16}
+    className="shrink-0 mt-1 text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors"
+  />
+</a>
