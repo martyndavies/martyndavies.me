@@ -50,12 +50,15 @@ export default {
       const mdResponse = await env.ASSETS.fetch(mdRequest)
       if (mdResponse.status === 200) {
         const body = await mdResponse.text()
-        const tokenCount = Math.round((body.match(/\\S+/g) || []).length * 1.3)
+        const words = body.match(/\\S+/g) || []
+        const tokenCount = Math.round(words.length * 1.3)
         const headers = new Headers(mdResponse.headers)
         headers.set('Content-Type', 'text/markdown; charset=utf-8')
         headers.set('Vary', 'Accept')
         headers.set('Content-Signal', 'ai-train=yes, search=yes, ai-input=yes')
         headers.set('X-Markdown-Tokens', String(tokenCount))
+        headers.set('X-Markdown-Words', String(words.length))
+        headers.set('X-Markdown-Body-Length', String(body.length))
         return new Response(body, { status: 200, headers })
       }
     }
