@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SectionHeader from '@/components/SectionHeader.astro'
+import VideoCard from '@/components/VideoCard.astro'
+import { videos } from '@/data/videos'
+import { siteLogos } from '@/data/writing'
+
+const COLLAPSE_THRESHOLD = 8
+
+const zuploVideos = videos.filter(v => v.channel === 'Zuplo')
+const conferenceVideos = videos.filter(v => v.channel !== 'Zuplo')
+const hiddenCount = zuploVideos.length - COLLAPSE_THRESHOLD
+const zuploLogo = siteLogos['zuplo']
+---
+
+<BaseLayout
+  title="Videos"
+  description="A curated selection of videos, talks, and demos featuring Martyn Davies."
+>
+  <SectionHeader title="Videos" />
+
+  <section class="mb-16">
+    <div class="flex items-center gap-3 mb-5 pb-4 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+      <img
+        src={zuploLogo.src}
+        alt={zuploLogo.alt}
+        width="24"
+        height="24"
+        class="h-6 w-auto object-contain"
+      />
+      <span class="font-mono text-sm font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
+        {zuploLogo.label}
+      </span>
+    </div>
+    <div data-video-list="zuplo">
+      {zuploVideos.map((item, i) => (
+        <div
+          data-index={i}
+          class="grid overflow-hidden"
+          style={i >= COLLAPSE_THRESHOLD ? 'grid-template-rows: 0fr; transition: grid-template-rows 200ms ease' : 'grid-template-rows: 1fr; transition: grid-template-rows 200ms ease'}
+        >
+          <div class="overflow-hidden">
+            <VideoCard item={item} showChannel={false} />
+          </div>
+        </div>
+      ))}
+    </div>
+    {hiddenCount > 0 && (
+      <button
+        data-toggle="zuplo"
+        class="mt-3 font-mono text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] hover:text-[var(--color-accent-hover)] dark:hover:text-[var(--color-accent-hover-dark)] transition-colors"
+      >
+        Show {hiddenCount} more →
+      </button>
+    )}
+  </section>
+
+  <section class="mb-16">
+    <div class="flex items-center gap-3 mb-5 pb-4 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+      <span class="font-mono text-sm font-medium text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
+        Conference talks &amp; panels
+      </span>
+    </div>
+    <div>
+      {conferenceVideos.map(item => (
+        <VideoCard item={item} showChannel={true} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const THRESHOLD = 8
+
+  document.querySelectorAll<HTMLButtonElement>('[data-toggle]').forEach(btn => {
+    const key = btn.dataset.toggle!
+    const list = document.querySelector(`[data-video-list="${key}"]`)
+    if (!list) return
+
+    const items = list.querySelectorAll<HTMLElement>('[data-index]')
+    const total = items.length
+    let expanded = false
+
+    btn.addEventListener('click', () => {
+      expanded = !expanded
+      items.forEach(el => {
+        if (parseInt(el.dataset.index!, 10) >= THRESHOLD) {
+          el.style.gridTemplateRows = expanded ? '1fr' : '0fr'
+        }
+      })
+      btn.textContent = expanded
+        ? '← Show less'
+        : `Show ${total - THRESHOLD} more →`
+    })
+  })
+</script>

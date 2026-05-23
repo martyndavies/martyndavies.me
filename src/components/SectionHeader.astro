@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string
+  href?: string
+  linkLabel?: string
+  secondary?: boolean
+}
+
+const { title, href, linkLabel = 'See all', secondary = false } = Astro.props
+---
+
+<div class="mb-6">
+  <div class="flex items-baseline justify-between gap-4 mb-3">
+    <h2 class:list={[
+      secondary
+        ? 'text-xs font-mono uppercase tracking-widest text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]'
+        : 'text-base font-semibold text-[var(--color-text)] dark:text-[var(--color-text-dark)]'
+    ]}>
+      {title}
+    </h2>
+    {href && (
+      <a
+        href={href}
+        aria-label={linkLabel}
+        class="font-mono text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] underline underline-offset-4 hover:opacity-80 shrink-0 transition-opacity"
+      >
+        {linkLabel} <span aria-hidden="true">→</span>
+      </a>
+    )}
+  </div>
+  <div class="h-px bg-[var(--color-border)] dark:bg-[var(--color-border-dark)]" />
+</div>

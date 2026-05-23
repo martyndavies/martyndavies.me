@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1c1e22"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3ccfcf"/>
+  <text x="80" y="260" font-family="monospace" font-size="20" fill="#3ccfcf" opacity="0.7">~/martyndavies.me</text>
+  <text x="80" y="330" font-family="monospace" font-size="56" font-weight="bold" fill="#e8eaed">Martyn Davies</text>
+  <text x="80" y="395" font-family="monospace" font-size="24" fill="#7a8490">Developer Advocate · Community Lead · Zuplo</text>
+</svg>
