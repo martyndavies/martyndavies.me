@@ -12,7 +12,7 @@ I think we're closer to this than most people realise.
 
 ## How developers evaluate today
 
-Right now, when I need to pick an API product, I do something like this: I search for options, open a few tabs, read comparison posts, maybe ask colleagues or check Hacker News threads. Then I narrow it down to two or three candidates, sign up for free trials, and start building. The whole process takes hours, sometimes days. I accumulate accounts I never use. I hit friction points that I either push through or give up on, and I make a decision based on feel as much as features.
+Right now, when I need to pick an API product, I start by finding a service that looks like it might fit. Then I go straight to the docs. I'm looking at sample code, examples, use cases, trying to get a feel for what implementation will actually look like. If the docs are good, I narrow it down and sign up for a free trial. Then I start building. The whole process takes hours, sometimes days. I accumulate accounts I never use. I hit friction points that I either push through or give up on, and I make a decision based on feel as much as features.
 
 That evaluation work is exactly what agents are going to take over.
 
