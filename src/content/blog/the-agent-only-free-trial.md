@@ -52,11 +52,9 @@ The companies preparing for this aren't just writing good documentation. They're
 
 ## Are companies ready?
 
-Mostly, no.
+In many ways, yes. A lot of companies are already agent-ready on the development side. Their documentation is published as discoverable, machine-readable markdown. Their CLI tools and MCP servers are solid and well-maintained. Their API surface area is expanding, not shrinking. More and more companies are recognising that they need to support agent-assisted software development right now, and they're investing accordingly.
 
-A handful of forward-thinking developer tools companies have published MCP servers. Some have added `llms.txt`. A few are quietly redesigning their onboarding to be more programmatically accessible. But the majority are still optimising for a human visitor who arrives via Google, reads a features page, and books a demo.
-
-That buyer journey is going to coexist with the agent evaluation journey for a while, and then, for a significant slice of technical buying decisions, it's going to be replaced by it.
+The gap is in procurement. Account creation, signup flows, identity verification: these still assume a human in the loop. The tooling and documentation are increasingly ready for agents to build against, but the front door still has a human-sized frame. That's the part that needs to change.
 
 ## What good preparation looks like
 
