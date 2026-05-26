@@ -70,7 +70,7 @@ Then there's [auth.md](https://workos.com/auth-md) from WorkOS. A protocol for a
 
 Two flows: agent verified, where an identity provider vouches for the user with no human interaction, and user claimed, where the agent triggers a code and the human confirms. It builds on [ID-JAG](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-identity-assertion-authz-grant), an IETF draft for identity assertion JWT authorization grants.
 
-Auth.md matters not because it will necessarily become the standard, but because WorkOS is setting the terms. They're not waiting for agent registration to emerge organically. They're defining the protocol and shipping a reference implementation.
+Auth.md matters not because it's tied to WorkOS, because it isn't. The protocol is open and independent of their infrastructure. What WorkOS has done is start a conversation that needed starting. ID-JAG is a dense IETF draft. Auth.md separates the vast OAuth specification into something a human, or an agent, can actually get their head around. That's a useful contribution regardless of whether auth.md itself becomes the standard.
 
 Neither of these is an incremental improvement to existing developer tools. Stripe is building a provisioning layer designed around CLI-first service discovery. WorkOS is drafting an OAuth extension for agent authentication. When companies at this level start building infrastructure specifically for agent workflows, that's not a "maybe someday" signal. That's a sign that the next layer of the stack is being poured now.
 
