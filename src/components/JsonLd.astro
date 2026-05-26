@@ -1,0 +1,17 @@
+---
+interface Props {
+  data: Record<string, unknown>
+}
+
+const { data } = Astro.props
+
+function escapeJsonLd(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+---
+<script type="application/ld+json" set:html={escapeJsonLd(JSON.stringify(data))} />

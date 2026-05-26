@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import SectionHeader from '@/components/SectionHeader.astro'
 import BlogCard from '@/components/BlogCard.astro'
 import { getCollection } from 'astro:content'
+import { webSite, blog, breadcrumb } from '@/schemas'
 
 const posts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
@@ -12,6 +13,8 @@ const posts = (await getCollection('blog'))
 <BaseLayout
   title="Blog"
   description="Writing by Martyn Davies on developer advocacy, tooling, and the evolving relationship between developers and the products they use."
+  markdownUrl="/blog/index.md"
+  schemas={[webSite(), blog(posts), breadcrumb([{ name: 'Home', url: '/' }, { name: 'Blog' }])]}
 >
   <SectionHeader title="Blog" />
 
