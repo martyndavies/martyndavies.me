@@ -56,11 +56,31 @@ In many ways, yes. A lot of companies are already agent-ready on the development
 
 The gap is in procurement. Account creation, signup flows, identity verification: these still assume a human in the loop. The tooling and documentation are increasingly ready for agents to build against, but the front door still has a human-sized frame. That's the part that needs to change.
 
+## The signals are already here
+
+I said we're closer to this than most people realise. Two recent releases make that case concrete.
+
+[Stripe Projects](https://projects.dev/) launched recently and it reads like a blueprint for agent-driven provisioning. From the CLI, you can add and manage services: databases, hosting, auth, analytics. Credentials are generated and synced automatically. Billing is centralised.
+
+If this sounds familiar, that's because it is. Heroku's `heroku addons` proved that developers will adopt services through a CLI when you remove the context switching. I saw that work firsthand during my time at SendGrid. The CLI was a distribution channel, and a remarkably effective one.
+
+Stripe Projects is the same model, but the landing page says "Install skill" and includes a "Try prompt" section. That's not written for developers browsing a website. That's written for coding agents running in a terminal.
+
+Then there's [auth.md](https://workos.com/auth-md) from WorkOS. A protocol for agent-driven user registration. An agent fetches your app's auth.md file, reads the supported authentication flows, and registers a user without touching a sign-up form.
+
+Two flows: agent verified, where an identity provider vouches for the user with no human interaction, and user claimed, where the agent triggers a code and the human confirms. It builds on [ID-JAG](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-identity-assertion-authz-grant), an IETF draft for identity assertion JWT authorization grants.
+
+Auth.md matters not because it's tied to WorkOS, because it isn't. The protocol is open and independent of their infrastructure. What WorkOS has done is start a conversation that needed starting. ID-JAG is a dense IETF draft. Auth.md separates the vast OAuth specification into something a human, or an agent, can actually get their head around. That's a useful contribution regardless of whether auth.md itself becomes the standard.
+
+Neither of these is an incremental improvement to existing developer tools. Stripe is building a provisioning layer designed around CLI-first service discovery. WorkOS is drafting an OAuth extension for agent authentication. When companies at this level start building infrastructure specifically for agent workflows, that's not a "maybe someday" signal. That's a sign that the next layer of the stack is being poured now.
+
 ## What good preparation looks like
 
 If I'm building a developer tool or SaaS product and I want to be ready for the agent-driven evaluation:
 
-- **Publish an MCP server** (or at minimum, a well-structured OpenAPI spec). Give agents a clean way to understand what your product can do.
+- **Publish a well-structured OpenAPI spec.** This is the minimum. It gives agents a way to understand what your product can do without guessing.
+- **Offer a CLI, an MCP server, or both.** If you already have a CLI, supporting it with complementary agent skills is a good move. If not, MCP can be the starting point, and agent skills still apply.
+- **Use MCP to cover what CLI can't reach.** A lot of what agents need to do with a SaaS product, adding team members, creating API keys, managing projects, is still very UI-centric and sometimes out of scope for a CLI. That's where MCP really offers value. (I've written about this in more detail on [Zuplo's blog](https://zuplo.com/blog/cli-or-mcp).)
 - **Write an `llms.txt`** file, a plain-text summary of your product, documentation structure, and key concepts, indexed at the root of your domain. Think of it as a cover letter for LLMs.
 - **Audit your sign-up flow** for autonomous accessibility. What breaks if there's no human present?
 - **Invest in error message quality**. An agent will encounter your errors, and it will include them in its report.
