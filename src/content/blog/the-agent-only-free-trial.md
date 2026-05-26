@@ -78,7 +78,9 @@ Neither of these is an incremental improvement to existing developer tools. Stri
 
 If I'm building a developer tool or SaaS product and I want to be ready for the agent-driven evaluation:
 
-- **Give agents a way to manage your product.** At minimum, publish a well-structured OpenAPI spec. Better: offer a CLI, an MCP server, or both. A lot of what agents need to do with a SaaS product, adding team members, creating API keys, managing projects, is still very UI-centric and sometimes out of scope for a CLI. That's where MCP really offers value. If you already have a CLI, supporting it with complementary agent skills is a good move. If not, MCP can be the starting point, and agent skills still apply. (I've written about this in more detail on [Zuplo's blog](https://zuplo.com/blog/cli-or-mcp).)
+- **Publish a well-structured OpenAPI spec.** This is the minimum. It gives agents a way to understand what your product can do without guessing.
+- **Offer a CLI, an MCP server, or both.** If you already have a CLI, supporting it with complementary agent skills is a good move. If not, MCP can be the starting point, and agent skills still apply.
+- **Use MCP to cover what CLI can't reach.** A lot of what agents need to do with a SaaS product, adding team members, creating API keys, managing projects, is still very UI-centric and sometimes out of scope for a CLI. That's where MCP really offers value. (I've written about this in more detail on [Zuplo's blog](https://zuplo.com/blog/cli-or-mcp).)
 - **Write an `llms.txt`** file, a plain-text summary of your product, documentation structure, and key concepts, indexed at the root of your domain. Think of it as a cover letter for LLMs.
 - **Audit your sign-up flow** for autonomous accessibility. What breaks if there's no human present?
 - **Invest in error message quality**. An agent will encounter your errors, and it will include them in its report.
