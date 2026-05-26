@@ -6,6 +6,7 @@ import ArticleCard from '@/components/ArticleCard.astro'
 import BlogCard from '@/components/BlogCard.astro'
 import { writing } from '@/data/writing'
 import { getCollection } from 'astro:content'
+import { webSite, personSchema, breadcrumb } from '@/schemas'
 
 const posts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
@@ -15,7 +16,11 @@ const recentWriting = writing.slice(0, 3)
 const recentPosts = posts.slice(0, 2)
 ---
 
-<BaseLayout title="Martyn Davies">
+<BaseLayout
+  title="Martyn Davies"
+  markdownUrl="/index.md"
+  schemas={[webSite(), personSchema(), breadcrumb([{ name: 'Home', url: '/' }])]}
+>
   <Hero name="Martyn Davies" />
 
   {recentPosts.length > 0 && (

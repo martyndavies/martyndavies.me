@@ -4,6 +4,7 @@ import SectionHeader from '@/components/SectionHeader.astro'
 import VideoCard from '@/components/VideoCard.astro'
 import { videos } from '@/data/videos'
 import { siteLogos } from '@/data/writing'
+import { webSite, collectionPage, videoObject, breadcrumb } from '@/schemas'
 
 const COLLAPSE_THRESHOLD = 8
 
@@ -16,6 +17,13 @@ const zuploLogo = siteLogos['zuplo']
 <BaseLayout
   title="Videos"
   description="A curated selection of videos, talks, and demos featuring Martyn Davies."
+  markdownUrl="/videos.md"
+  schemas={[
+    webSite(),
+    collectionPage('Videos', 'A curated selection of videos, talks, and demos featuring Martyn Davies.', '/videos'),
+    ...videos.map(v => videoObject(v)),
+    breadcrumb([{ name: 'Home', url: '/' }, { name: 'Videos' }]),
+  ]}
 >
   <SectionHeader title="Videos" />
 

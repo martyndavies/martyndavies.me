@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import SectionHeader from '@/components/SectionHeader.astro'
 import ArticleCard from '@/components/ArticleCard.astro'
 import { writing, siteLogos, type WritingItem } from '@/data/writing'
+import { webSite, collectionPage, breadcrumb } from '@/schemas'
 
 const COLLAPSE_THRESHOLD = 6
 
@@ -18,6 +19,8 @@ const siteOrder: WritingItem['site'][] = ['zuplo', 'nexmo', 'algolia', 'dev.to',
 <BaseLayout
   title="Articles"
   description="Articles and posts written by Martyn Davies across Zuplo, Vonage/Nexmo, Algolia, SendGrid, and dev.to."
+  markdownUrl="/writing.md"
+  schemas={[webSite(), collectionPage('Articles', "Articles and posts written by Martyn Davies across Zuplo, Vonage/Nexmo, Algolia, SendGrid, and dev.to.", '/writing'), breadcrumb([{ name: 'Home', url: '/' }, { name: 'Articles' }])]}
 >
   <SectionHeader title="Articles" />
 

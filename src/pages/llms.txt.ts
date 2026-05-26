@@ -24,7 +24,7 @@ export const GET: APIRoute = async () => {
     '',
     '## Content negotiation',
     '',
-    'All HTML pages support `Accept: text/markdown` content negotiation and will return a markdown version with `Content-Type: text/markdown`.',
+    'Every HTML page on this site links to an alternate plain-text Markdown version via `<link rel="alternate" type="text/markdown">`. The Markdown URLs follow the pattern of appending `.md` to the page path.',
     '',
     '## Machine-readable pages',
     '',

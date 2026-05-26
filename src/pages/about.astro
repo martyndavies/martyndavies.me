@@ -1,119 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import SectionHeader from '@/components/SectionHeader.astro'
-
-const experience = [
-  {
-    company: 'Zuplo',
-    roles: [
-      {
-        title: 'Developer Relations Lead',
-        period: 'Aug 2024 – Present',
-        description: 'Focused on how developers and AI coding agents adopt API infrastructure. Producing the full content stack across blog, video, newsletter, and social, backed by working demos and example projects. Leading GTM launches for MCP server support, AI Gateway, API Monetization and more.'
-      }
-    ]
-  },
-  {
-    company: 'Superface',
-    roles: [
-      {
-        title: 'Head of Developer Relations',
-        period: 'May 2023 – May 2024',
-        description: 'Led developer GTM working closely with the founders on product market fit as well as all developer asset creation from documentation to video content.'
-      }
-    ]
-  },
-  {
-    company: 'Orbit',
-    roles: [
-      {
-        title: 'Product Manager',
-        period: 'May 2021 – Apr 2023',
-        description: 'Managing product output for how users get their community data into Orbit — integrations, ETL partnerships, low/no-code solutions and the API — and then out again as valuable insight via reports, notifications and connections to other platforms.'
-      }
-    ]
-  },
-  {
-    company: 'Vonage',
-    roles: [
-      {
-        title: 'Director of Developer Education',
-        period: 'Jan 2020 – Jun 2021',
-        description: 'Leading the Developer Education team and strategy as part of the wider Product & Developer Experience department. Building a team of creative engineers to educate and inspire developers around an extensive communications API platform.'
-      },
-      {
-        title: 'Senior Manager, Developer Relations & Developer Education',
-        period: 'Jul 2018 – Jan 2020',
-        description: null
-      }
-    ]
-  },
-  {
-    company: 'Algolia',
-    roles: [
-      {
-        title: 'Senior Developer Advocate',
-        period: 'Jan 2018 – Jun 2018',
-        description: null
-      }
-    ]
-  },
-  {
-    company: 'Ignite Accelerator',
-    roles: [
-      {
-        title: 'Programme Director',
-        period: 'Sep 2015 – Dec 2017',
-        description: 'Launched the Ignite Accelerator in London, raising funding for and successfully delivering two cohorts, investing over £500k in 19 teams. Responsible for overall programme strategy, technical due diligence, and founder support through the fundraising process.'
-      }
-    ]
-  },
-  {
-    company: 'SendGrid',
-    roles: [
-      {
-        title: 'Lead Developer Advocate, EMEA & APAC',
-        period: 'Sep 2012 – Sep 2015',
-        description: "Led the Community & Developer Relations team in EMEA as SendGrid's first non-US employee. Directed strategy around the SendGrid Accelerate Startup Programme, developer relations, and the European strategy for meetups, hackathons, conference participation and open source."
-      }
-    ]
-  },
-  {
-    company: 'Six Two Productions',
-    roles: [
-      {
-        title: 'Director of API Design',
-        period: 'Mar 2011 – Aug 2012',
-        description: 'Led a creative technology team building web and mobile applications with heavy API dependencies. Acted in an advisory capacity to major labels on open data and API strategy. Client work included Universal Music Group, Warner Music, Sony Music, and others.'
-      }
-    ]
-  },
-  {
-    company: 'Universal Music Group',
-    roles: [
-      {
-        title: 'Product Manager, Innovation',
-        period: 'Jun 2010 – Jun 2011',
-        description: 'Leading mobile application commissioning and development across B2B and B2C technology centrally for the 5 major label groups that make up UMG. Product Manager for UK mobile operations, digital technology joint ventures, and 3rd party API integrations.'
-      }
-    ]
-  },
-  {
-    company: 'BBC Audio & Music Interactive',
-    roles: [
-      {
-        title: 'Product Manager',
-        period: 'Mar 2008 – Jun 2010',
-        description: 'Developed the outline and led the team that built the BBC Introducing technology platform, which has launched several number one artists. Focused on product management and application of new technologies to enhance BBC Music offerings, and managed relationships between BBC Music and third party start-ups.'
-      }
-    ]
-  },
-]
+import { experience, focusAreas } from '@/data/about'
+import { webSite, profilePage, breadcrumb } from '@/schemas'
 ---
 
 <BaseLayout
   title="About"
   description="About Martyn Davies — background, experience, and career history in developer advocacy and product management."
+  markdownUrl="/about.md"
+  schemas={[webSite(), profilePage(), breadcrumb([{ name: 'Home', url: '/' }, { name: 'About' }])]}
 >
   <SectionHeader title="About" />
 
@@ -161,16 +57,7 @@ const experience = [
   <section>
     <SectionHeader title="Focus areas" />
     <ul class="grid grid-cols-2 gap-2">
-      {[
-        'Developer Advocacy',
-        'Developer Education',
-        'Community Management',
-        'Product Management',
-        'Developer Experience',
-        'API Products',
-        'Technical Writing',
-        'Team Leadership',
-      ].map(area => (
+      {focusAreas.map(area => (
         <li class="flex items-center gap-2 text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">
           <span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] font-mono text-xs">→</span>
           {area}

@@ -1,18 +1,27 @@
 ---
 import Nav from '@/components/Nav.astro'
 import Footer from '@/components/Footer.astro'
+import JsonLd from '@/components/JsonLd.astro'
 import '@/styles/global.css'
 
 interface Props {
   title: string
   description?: string
   ogImage?: string
+  markdownUrl?: string
+  article?: {
+    publishedTime: string
+  }
+  schemas?: Record<string, unknown>[]
 }
 
 const {
   title,
   description = 'Martyn Davies — Builder Relations Lead. Developer education, community, and API products.',
-  ogImage = '/og-default.png'
+  ogImage = '/og-default.png',
+  markdownUrl,
+  article,
+  schemas,
 } = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://martyndavies.me')
@@ -26,21 +35,26 @@ const ogImageURL = new URL(ogImage, Astro.site ?? 'https://martyndavies.me')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    {markdownUrl && <link rel="alternate" type="text/markdown" href={new URL(markdownUrl, Astro.site ?? 'https://martyndavies.me')} />}
 
     <title>{title === 'Martyn Davies' ? title : `${title} — Martyn Davies`}</title>
     <meta name="description" content={description} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    {article && <meta property="article:published_time" content={article.publishedTime} />}
+    {article && <meta property="article:author" content="https://martyndavies.me" />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@martyndavies" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+
+    {schemas?.map(schema => <JsonLd data={schema} />)}
 
     <script is:inline>
       ;(function () {
