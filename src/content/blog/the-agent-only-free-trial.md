@@ -56,6 +56,16 @@ In many ways, yes. A lot of companies are already agent-ready on the development
 
 The gap is in procurement. Account creation, signup flows, identity verification: these still assume a human in the loop. The tooling and documentation are increasingly ready for agents to build against, but the front door still has a human-sized frame. That's the part that needs to change.
 
+## The signals are already here
+
+I said we're closer to this than most people realise. Two recent releases make that case concrete.
+
+[Stripe Projects](https://projects.dev/) launched recently and it reads like a blueprint for agent-driven provisioning. From the CLI, you can add and manage services: databases, hosting, auth, analytics. Credentials are generated and synced automatically. Billing is centralised. If this sounds familiar, that's because it is. Heroku's `heroku addons` proved that developers will adopt services through a CLI when you remove the context switching. I saw that work firsthand during my time at SendGrid. The CLI was a distribution channel, and a remarkably effective one. Stripe Projects is the same model, but the landing page says "Install skill" and includes a "Try prompt" section. That's not written for developers browsing a website. That's written for coding agents running in a terminal.
+
+Then there's [auth.md](https://workos.com/auth-md) from WorkOS. A protocol for agent-driven user registration. An agent fetches your app's auth.md file, reads the supported authentication flows, and registers a user without touching a sign-up form. Two flows: agent verified, where an identity provider vouches for the user with no human interaction, and user claimed, where the agent triggers a code and the human confirms. It builds on [ID-JAG](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-identity-assertion-authz-grant), an IETF draft for identity assertion JWT authorization grants. Auth.md matters not because it will necessarily become the standard, but because WorkOS is setting the terms. They're not waiting for agent registration to emerge organically. They're defining the protocol and shipping a reference implementation.
+
+Neither of these is an incremental improvement to existing developer tools. Stripe is building a provisioning layer designed around CLI-first service discovery. WorkOS is drafting an OAuth extension for agent authentication. When companies at this level start building infrastructure specifically for agent workflows, that's not a "maybe someday" signal. That's a sign that the next layer of the stack is being poured now.
+
 ## What good preparation looks like
 
 If I'm building a developer tool or SaaS product and I want to be ready for the agent-driven evaluation:
